@@ -81,9 +81,6 @@ void pointing_device_init_user(void) {
 
 // in keymap.c:
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == _LAYER_MOUSE_SCROLL_LAYER );
-
     // checks highest layer other than target layer
     switch(get_highest_layer(remove_auto_mouse_layer(state, true))) {
         case _LAYER_MOUSE_SCROLL_LAYER:
@@ -95,6 +92,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             set_auto_mouse_enable(true);
             break;
     }
+
+    // Auto enable scroll mode when the highest layer is 3
+    keyball_set_scroll_mode(get_highest_layer(state) == _LAYER_MOUSE_SCROLL_LAYER );
+
     // recommend that any code that makes adjustment based on auto mouse layer state would go here
     return state;
 }
