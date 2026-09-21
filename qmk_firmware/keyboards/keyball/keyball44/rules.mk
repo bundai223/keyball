@@ -32,6 +32,7 @@ MOUSEKEY_ENABLE = no
 RGBLIGHT_ENABLE = no        # Enable RGBLIGHT
 RGB_MATRIX_ENABLE = no      # Enable RGB_MATRIX (not work yet)
 RGB_MATRIX_DRIVER = ws2812
+SRC += rgb_matrix.c
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
