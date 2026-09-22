@@ -49,6 +49,24 @@ class Keyball44RgbMatrixConfigTest(unittest.TestCase):
         self.assertNotIn(59, mapped_indices)
         self.assertEqual(set(mapped_indices), set(range(23)) | set(range(30, 51)))
 
+    def test_right_key_matrix_columns_follow_physical_left_to_right_order(self):
+        matrix = _strip_c_comments(_section(
+            self.source,
+            "/* Key matrix to LED index */",
+            "/* LED index to physical position */",
+        ))
+        rows = [
+            ["NO_LED" if value == "NO_LED" else int(value) for value in re.findall(r"NO_LED|\d+", row)]
+            for row in re.findall(r"\{([^{}]*)\}", matrix)
+        ]
+
+        # LAYOUT_* expands the right-hand arguments as R00..R05 in the
+        # matrix, while the physical LED coordinates are ordered R05..R00
+        # from the centre toward the outside edge.
+        self.assertEqual(rows[4], [35, 34, 33, 32, 31, 30])
+        self.assertEqual(rows[5], [41, 40, 39, 38, 37, 36])
+        self.assertEqual(rows[6], [47, 46, 45, 44, 43, 42])
+
 
 if __name__ == "__main__":
     unittest.main()
