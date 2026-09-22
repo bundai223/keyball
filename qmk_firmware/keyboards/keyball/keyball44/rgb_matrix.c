@@ -27,10 +27,10 @@ led_config_t g_led_config = {
         { 18, 15, 11,  7,  4,  1 },
         { 19, 16, 12,  8,  5,  2 },
         { NO_LED, 13,  9, 27, 28, 29 },
-        { 35, 34, 33, 32, 31, 30 },
-        { 41, 40, 39, 38, 37, 36 },
-        { 47, 46, 45, 44, 43, 42 },
-        { NO_LED, 48, NO_LED, NO_LED, 49, 50 },
+        { 40, 43, 47, 50, 53, 56 },
+        { 41, 44, 48, 51, 54, 57 },
+        { 42, 45, 49, 52, 55, 58 },
+        { NO_LED, 46, NO_LED, NO_LED, 31, 30 },
     },
     {
         /* LED index to physical position */
@@ -45,11 +45,14 @@ led_config_t g_led_config = {
         {   0, 63 }, { 112, 63 }, { 124, 63 }, { 136, 63 }, { 148, 63 }, { 160, 63 }, { 172, 63 },
         {  80, 63 }, { 100, 63 }, { 120, 63 },
 
-        { 140,  0 }, { 160,  0 }, { 180,  0 }, { 200,  0 }, { 220,  0 }, { 224,  0 },
-        { 140, 21 }, { 160, 21 }, { 180, 21 }, { 200, 21 }, { 220, 21 }, { 224, 21 },
-        { 140, 42 }, { 160, 42 }, { 180, 42 }, { 200, 42 }, { 220, 42 }, { 224, 42 },
-        { 160, 63 }, { 200, 63 }, { 220, 63 },
+        { 140, 63 }, { 160, 63 },
         { 140, 63 }, { 148, 63 }, { 156, 63 }, { 164, 63 }, { 172, 63 }, { 180, 63 }, { 188, 63 }, { 196, 63 },
+        { 224,  0 }, { 224, 21 }, { 224, 42 },
+        { 220,  0 }, { 220, 21 }, { 220, 42 }, { 220, 63 },
+        { 200,  0 }, { 200, 21 }, { 200, 42 },
+        { 180,  0 }, { 180, 21 }, { 180, 42 },
+        { 160,  0 }, { 160, 21 }, { 160, 42 },
+        { 140,  0 }, { 140, 21 }, { 140, 42 },
         { 224, 63 },
     },
     {
@@ -61,11 +64,9 @@ led_config_t g_led_config = {
         LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
 
-        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_NONE,
     }
 };

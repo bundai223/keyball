@@ -47,7 +47,7 @@ class Keyball44RgbMatrixConfigTest(unittest.TestCase):
         mapped_indices = [int(value) for value in re.findall(r"\b\d+\b", matrix)]
 
         self.assertNotIn(59, mapped_indices)
-        self.assertEqual(set(mapped_indices), set(range(20)) | set(range(27, 30)) | set(range(30, 51)))
+        self.assertEqual(set(mapped_indices), set(range(20)) | set(range(27, 30)) | set(range(30, 32)) | set(range(40, 59)))
 
     def test_right_key_matrix_columns_follow_physical_left_to_right_order(self):
         matrix = _strip_c_comments(_section(
@@ -61,11 +61,12 @@ class Keyball44RgbMatrixConfigTest(unittest.TestCase):
         ]
 
         # LAYOUT_* expands the right-hand arguments as R00..R05 in the
-        # matrix, while the physical LED coordinates are ordered R05..R00
-        # from the centre toward the outside edge.
-        self.assertEqual(rows[4], [35, 34, 33, 32, 31, 30])
-        self.assertEqual(rows[5], [41, 40, 39, 38, 37, 36])
-        self.assertEqual(rows[6], [47, 46, 45, 44, 43, 42])
+        # matrix.  The right PCB's WS2812 chain is column-major, so the
+        # matrix must point to LED11..LED29 in physical column order.
+        self.assertEqual(rows[4], [40, 43, 47, 50, 53, 56])
+        self.assertEqual(rows[5], [41, 44, 48, 51, 54, 57])
+        self.assertEqual(rows[6], [42, 45, 49, 52, 55, 58])
+        self.assertEqual(rows[7], ["NO_LED", 46, "NO_LED", "NO_LED", 31, 30])
 
     def test_left_matrix_matches_serial_led_chain(self):
         matrix = _strip_c_comments(_section(
@@ -115,6 +116,38 @@ class Keyball44RgbMatrixConfigTest(unittest.TestCase):
         self.assertEqual(flags[0:20], ["LED_FLAG_KEYLIGHT"] * 20)
         self.assertEqual(flags[20:27], ["LED_FLAG_UNDERGLOW"] * 7)
         self.assertEqual(flags[27:30], ["LED_FLAG_KEYLIGHT"] * 3)
+
+    def test_right_keylight_points_and_flags_follow_serial_led_chain(self):
+        points = _strip_c_comments(_section(
+            self.source,
+            "/* LED index to physical position */",
+            "/* LED index to flag */",
+        ))
+        coordinates = [
+            tuple(int(value) for value in pair)
+            for pair in re.findall(r"\{\s*(\d+)\s*,\s*(\d+)\s*\}", points)
+        ]
+        flags = re.findall(
+            r"LED_FLAG_KEYLIGHT|LED_FLAG_UNDERGLOW|LED_FLAG_NONE",
+            _strip_c_comments(_section(self.source, "/* LED index to flag */", "};")),
+        )
+
+        # Right-side serial order from the Keyball44 PCB:
+        # LED1/2 are thumb keys, LED3..10 are underglow, then the main
+        # key columns are LED11..16, LED18..29 with LED17 as R31.
+        self.assertEqual(coordinates[30:32], [(140, 63), (160, 63)])
+        self.assertEqual(coordinates[40:59], [
+            (224, 0), (224, 21), (224, 42),
+            (220, 0), (220, 21), (220, 42), (220, 63),
+            (200, 0), (200, 21), (200, 42),
+            (180, 0), (180, 21), (180, 42),
+            (160, 0), (160, 21), (160, 42),
+            (140, 0), (140, 21), (140, 42),
+        ])
+        self.assertEqual(flags[30:32], ["LED_FLAG_KEYLIGHT"] * 2)
+        self.assertEqual(flags[32:40], ["LED_FLAG_UNDERGLOW"] * 8)
+        self.assertEqual(flags[40:59], ["LED_FLAG_KEYLIGHT"] * 19)
+        self.assertEqual(flags[59], "LED_FLAG_NONE")
 
 
 if __name__ == "__main__":
