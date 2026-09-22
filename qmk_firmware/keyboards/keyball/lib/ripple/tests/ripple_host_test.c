@@ -40,6 +40,21 @@ static void test_trailing_ring_and_expiration(void) {
     assert(expired.intensity == 0);
 }
 
+static void test_expired_wave_does_not_reappear_after_timer_wrap(void) {
+    ripple_state_t state;
+    ripple_sample_t expired;
+    ripple_sample_t after_wrap;
+
+    ripple_state_init(&state);
+    ripple_trigger(&state, 100, 32, 0, 20);
+
+    expired = ripple_sample(&state, RIPPLE_DURATION_MS, 100, 32);
+    after_wrap = ripple_sample(&state, 0, 100, 32);
+
+    assert(expired.intensity == 0);
+    assert(after_wrap.intensity == 0);
+}
+
 static void test_oldest_wave_is_evicted(void) {
     ripple_state_t state;
     ripple_sample_t evicted;
@@ -85,6 +100,7 @@ static void test_ring_covers_key_spacing(void) {
 int main(void) {
     test_center_and_main_ring();
     test_trailing_ring_and_expiration();
+    test_expired_wave_does_not_reappear_after_timer_wrap();
     test_oldest_wave_is_evicted();
     test_overlapping_waves_add_intensity();
     test_ring_covers_key_spacing();

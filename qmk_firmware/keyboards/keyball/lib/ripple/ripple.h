@@ -65,4 +65,4 @@ typedef struct {
 
 void ripple_state_init(ripple_state_t *state);
 void ripple_trigger(ripple_state_t *state, uint16_t x, uint16_t y, uint16_t now, uint8_t hue);
-ripple_sample_t ripple_sample(const ripple_state_t *state, uint16_t now, uint16_t x, uint16_t y);
+ripple_sample_t ripple_sample(ripple_state_t *state, uint16_t now, uint16_t x, uint16_t y);

@@ -70,12 +70,12 @@ void ripple_trigger(ripple_state_t *state, uint16_t x, uint16_t y, uint16_t now,
     state->next_wave = (uint8_t)((state->next_wave + 1) % RIPPLE_MAX_WAVES);
 }
 
-ripple_sample_t ripple_sample(const ripple_state_t *state, uint16_t now, uint16_t x, uint16_t y) {
+ripple_sample_t ripple_sample(ripple_state_t *state, uint16_t now, uint16_t x, uint16_t y) {
     ripple_sample_t result = {0, 0};
     uint8_t strongest_intensity = 0;
 
     for (uint8_t index = 0; index < RIPPLE_MAX_WAVES; index++) {
-        const ripple_wave_t *wave = &state->waves[index];
+        ripple_wave_t *wave = &state->waves[index];
         uint16_t elapsed;
 
         if (!wave->active) {
@@ -84,6 +84,8 @@ ripple_sample_t ripple_sample(const ripple_state_t *state, uint16_t now, uint16_
 
         elapsed = (uint16_t)(now - wave->started_at);
         if (elapsed >= RIPPLE_DURATION_MS) {
+            // Retire expired waves so a 16-bit timer wrap cannot replay them.
+            wave->active = false;
             continue;
         }
 
