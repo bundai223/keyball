@@ -71,6 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    endif
 #endif
 #ifdef RGB_MATRIX_ENABLE
+#    define RGB_MATRIX_LED_COUNT 60
 #    define RGB_MATRIX_SPLIT    { 30, 30 }
 #endif
 
