@@ -78,10 +78,15 @@ static void test_overlapping_waves_add_intensity(void) {
     assert(two_sample.intensity > one_sample.intensity);
 }
 
+static void test_ring_covers_key_spacing(void) {
+    assert(RIPPLE_RING_WIDTH >= 24);
+}
+
 int main(void) {
     test_center_and_main_ring();
     test_trailing_ring_and_expiration();
     test_oldest_wave_is_evicted();
     test_overlapping_waves_add_intensity();
+    test_ring_covers_key_spacing();
     return 0;
 }

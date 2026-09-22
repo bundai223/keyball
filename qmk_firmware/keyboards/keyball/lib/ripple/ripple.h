@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RIPPLE_MAX_RADIUS UINT16_C(240)
 #endif
 #ifndef RIPPLE_RING_WIDTH
-#    define RIPPLE_RING_WIDTH UINT16_C(18)
+#    define RIPPLE_RING_WIDTH UINT16_C(28)
 #endif
 #ifndef RIPPLE_TRAIL_OFFSET
 #    define RIPPLE_TRAIL_OFFSET UINT16_C(30)
