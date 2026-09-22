@@ -105,13 +105,13 @@ class Keyball44RgbMatrixConfigTest(unittest.TestCase):
             (100, 0), (100, 21), (100, 42),
             (80, 0), (80, 21), (80, 42),
             (60, 0), (60, 21), (60, 42),
-            (40, 63),
+            (60, 63),
             (40, 0), (40, 21), (40, 42),
-            (20, 63),
+            (40, 63),
             (20, 0), (20, 21), (20, 42),
             (0, 0), (0, 21), (0, 42),
         ])
-        self.assertEqual(coordinates[27:30], [(60, 63), (80, 63), (100, 63)])
+        self.assertEqual(coordinates[27:30], [(80, 63), (100, 63), (120, 63)])
         self.assertEqual(flags[0:20], ["LED_FLAG_KEYLIGHT"] * 20)
         self.assertEqual(flags[20:27], ["LED_FLAG_UNDERGLOW"] * 7)
         self.assertEqual(flags[27:30], ["LED_FLAG_KEYLIGHT"] * 3)
