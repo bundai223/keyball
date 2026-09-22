@@ -19,6 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef RGB_MATRIX_ENABLE
 
+/*
+ * The LED indices below follow the WS2812 serial order on each PCB, not a
+ * row-major or visual-key order.  The two halves are concatenated globally:
+ * left LED1..30 use indices 0..29 and right LED1..29 use indices 30..58;
+ * index 59 is the unused split slot.
+ *
+ * Left PCB:
+ *   LED1..20 and LED28..30 are keylights; LED21..27 are underglow.
+ * Right PCB:
+ *   LED1=R35 (inner thumb), LED2=R34, LED17=R31 (outer thumb),
+ *   LED3..10 are underglow, and the main key columns are:
+ *     R00: LED11..13, R01: LED14..16, R02: LED18..20,
+ *     R03: LED21..23, R04: LED24..26, R05: LED27..29.
+ *
+ * LAYOUT_* expands the right-hand arguments as R00..R05 in matrix order,
+ * while the keymap presents them visually as R05..R00.
+ */
 // clang-format off
 led_config_t g_led_config = {
     {
