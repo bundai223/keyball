@@ -591,6 +591,14 @@ void keyboard_post_init_kb(void) {
 #endif
     }
 
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#    ifdef KEYBALL_AUTO_MOUSE_FORCE_ENABLE
+    // The personal ripple keymap keeps Auto Mouse enabled across reboots,
+    // even when the EEPROM contains a previously saved OFF state.
+    set_auto_mouse_enable(true);
+#    endif
+#endif
+
     keyball_on_adjust_layout(KEYBALL_ADJUST_PENDING);
     keyboard_post_init_user();
 }
