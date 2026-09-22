@@ -23,10 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 led_config_t g_led_config = {
     {
         /* Key matrix to LED index */
-        {  0,  1,  2,  3,  4,  5 },
-        {  6,  7,  8,  9, 10, 11 },
-        { 12, 13, 14, 15, 16, 17 },
-        { NO_LED, 18, 19, 20, 21, 22 },
+        { 17, 14, 10,  6,  3,  0 },
+        { 18, 15, 11,  7,  4,  1 },
+        { 19, 16, 12,  8,  5,  2 },
+        { NO_LED, 13,  9, 27, 28, 29 },
         { 35, 34, 33, 32, 31, 30 },
         { 41, 40, 39, 38, 37, 36 },
         { 47, 46, 45, 44, 43, 42 },
@@ -34,11 +34,16 @@ led_config_t g_led_config = {
     },
     {
         /* LED index to physical position */
-        {   0,  0 }, {  20,  0 }, {  40,  0 }, {  60,  0 }, {  80,  0 }, { 100,  0 },
-        {   0, 21 }, {  20, 21 }, {  40, 21 }, {  60, 21 }, {  80, 21 }, { 100, 21 },
-        {   0, 42 }, {  20, 42 }, {  40, 42 }, {  60, 42 }, {  80, 42 }, { 100, 42 },
-        {  20, 63 }, {  40, 63 }, {  60, 63 }, {  80, 63 }, { 100, 63 },
+        { 100,  0 }, { 100, 21 }, { 100, 42 },
+        {  80,  0 }, {  80, 21 }, {  80, 42 },
+        {  60,  0 }, {  60, 21 }, {  60, 42 },
+        {  40, 63 },
+        {  40,  0 }, {  40, 21 }, {  40, 42 },
+        {  20, 63 },
+        {  20,  0 }, {  20, 21 }, {  20, 42 },
+        {   0,  0 }, {   0, 21 }, {   0, 42 },
         {   0, 63 }, { 112, 63 }, { 124, 63 }, { 136, 63 }, { 148, 63 }, { 160, 63 }, { 172, 63 },
+        {  60, 63 }, {  80, 63 }, { 100, 63 },
 
         { 140,  0 }, { 160,  0 }, { 180,  0 }, { 200,  0 }, { 220,  0 }, { 224,  0 },
         { 140, 21 }, { 160, 21 }, { 180, 21 }, { 200, 21 }, { 220, 21 }, { 224, 21 },
@@ -52,8 +57,9 @@ led_config_t g_led_config = {
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
 
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
