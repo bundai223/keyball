@@ -13,4 +13,5 @@ This is the configuration for the Keyball44 RGB Matrix bring-up keymap.
 #define TAP_CODE_DELAY 5
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define KEYBALL_AUTO_MOUSE_DEFAULT_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1

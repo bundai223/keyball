@@ -568,6 +568,10 @@ void keyball_set_cpi(uint8_t cpi) {
 // Keyboard hooks
 
 void keyboard_post_init_kb(void) {
+#ifdef KEYBALL_AUTO_MOUSE_DEFAULT_ENABLE
+    bool has_saved_keyball_config = false;
+#endif
+
 #ifdef SPLIT_KEYBOARD
     // register transaction handlers on secondary.
     if (!is_keyboard_master()) {
@@ -580,6 +584,9 @@ void keyboard_post_init_kb(void) {
     // read keyball configuration from EEPROM
     if (eeconfig_is_enabled()) {
         keyball_config_t c = {.raw = eeconfig_read_kb()};
+#ifdef KEYBALL_AUTO_MOUSE_DEFAULT_ENABLE
+        has_saved_keyball_config = c.raw != 0;
+#endif
         keyball_set_cpi(c.cpi);
         keyball_set_scroll_div(c.sdiv);
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
@@ -590,6 +597,16 @@ void keyboard_post_init_kb(void) {
         keyball_set_scrollsnap_mode(c.ssnap);
 #endif
     }
+
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#    ifdef KEYBALL_AUTO_MOUSE_DEFAULT_ENABLE
+    // Enable Auto Mouse on first boot while preserving an explicitly saved
+    // ON/OFF setting on subsequent boots.
+    if (!has_saved_keyball_config) {
+        set_auto_mouse_enable(true);
+    }
+#    endif
+#endif
 
     keyball_on_adjust_layout(KEYBALL_ADJUST_PENDING);
     keyboard_post_init_user();
