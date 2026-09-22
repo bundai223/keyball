@@ -35,6 +35,14 @@ class AutoMouseForceEnableConfigTest(unittest.TestCase):
     def test_personal_mouse_layer_does_not_enable_scroll_mode(self):
         self.assertNotRegex(self.keymap, r"get_highest_layer\(state\)\s*==\s*3")
 
+    def test_layer1_middle_row_uses_plain_digits(self):
+        self.assertRegex(
+            self.keymap,
+            r"(?s)\[1\]\s*=\s*LAYOUT_universal\(.*?\n\s*"
+            r"_______\s*,\s*KC_1\s*,\s*KC_2\s*,\s*KC_3\s*,\s*KC_4\s*,\s*KC_5\s*,"
+            r".*?KC_6\s*,\s*KC_7\s*,\s*KC_8\s*,\s*KC_9\s*,\s*KC_0\s*,\s*_______",
+        )
+
     def test_force_enable_overrides_saved_auto_mouse_state(self):
         self.assertRegex(
             self.source,
