@@ -50,13 +50,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  ,                                       _______, _______, _______, _______, _______, _______  ,
               _______, 0x5C00   , _______,              _______, _______,                     _______, _______, _______, _______, 0x5C00
   ),
+
+  // Hold MO(4) on the mouse layer to scroll with the trackball.
+  [4] = LAYOUT_universal(
+    _______  , _______  , _______  , _______  , _______  , _______  ,                                       _______, _______, _______, _______, _______, _______  ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,                                       _______, _______, _______, _______, _______, _______  ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,                                       _______, _______, _______, _______, _______, _______  ,
+              _______, _______, _______,              _______, _______,                     _______, _______, _______, _______, _______
+  ),
 };
 // clang-format on
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // Layer 3 is the personal mouse layer; scroll mode is controlled by
-    // explicit pointing-device keycodes instead of layer state.
-    (void)state;
+    // Layer 4 is held from the personal mouse layer to scroll with the
+    // trackball while leaving the regular keymap transparent.
+    keyball_set_scroll_mode(get_highest_layer(state) == 4);
     return state;
 }
 
