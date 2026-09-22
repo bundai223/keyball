@@ -45,6 +45,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // RGB LED settings
 #define WS2812_DI_PIN       D3
 #ifdef RGBLIGHT_ENABLE
+// QMK 0.22.14 (the version pinned by this repository) still requires RGBLED_NUM.
+#    ifndef RGBLED_NUM
+#        define RGBLED_NUM 48
+#    endif
 #    define RGBLIGHT_LED_COUNT 48
 #    define RGBLED_SPLIT       { 24, 24 }  // (24 + 22)
 #    ifndef RGBLIGHT_LIMIT_VAL
