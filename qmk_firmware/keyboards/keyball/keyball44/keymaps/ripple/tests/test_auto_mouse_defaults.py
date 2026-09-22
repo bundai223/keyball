@@ -19,6 +19,12 @@ class AutoMouseForceEnableConfigTest(unittest.TestCase):
             r"#\s*define\s+KEYBALL_AUTO_MOUSE_FORCE_ENABLE\b",
         )
 
+    def test_ripple_targets_personal_mouse_layer(self):
+        self.assertRegex(
+            self.config,
+            r"#\s*define\s+AUTO_MOUSE_DEFAULT_LAYER\s+3\b",
+        )
+
     def test_force_enable_overrides_saved_auto_mouse_state(self):
         self.assertRegex(
             self.source,

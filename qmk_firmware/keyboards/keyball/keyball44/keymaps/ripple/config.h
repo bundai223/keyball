@@ -14,4 +14,4 @@ This is the configuration for the Keyball44 RGB Matrix bring-up keymap.
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define KEYBALL_AUTO_MOUSE_FORCE_ENABLE
-#define AUTO_MOUSE_DEFAULT_LAYER 1
+#define AUTO_MOUSE_DEFAULT_LAYER 3
